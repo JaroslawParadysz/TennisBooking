@@ -75,7 +75,7 @@ namespace TennisBooking.Merchandise.Api.Integration.Tests.Controllers
 
             var response = await client.GetAsync("http://localhost/api/stock/total");
 
-            var model = await JsonSerializer.DeserializeAsync<StockTotalOutputModel>(await response.Content.ReadAsStreamAsync());
+            var model = await JsonSerializer.DeserializeAsync<StockTotalOutputModel>(await response.Content.ReadAsStreamAsync(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
             Assert.Equal(1000, model.StockItemTotal);
         }
